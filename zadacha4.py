@@ -5,17 +5,26 @@
 # - k=2 => 2*x² + 4*x + 5 = 0 или x² + 5 = 0 или 10*x² = 0
 
 
-from random import randint
+from random import Random, randint
 
-k = int(input('Введите степень К: '))
-for i in range(k, 0, -1):
-	factor = randint(1, 100)
-	if factor ==0:
-		continue
-	elif factor == 1:
-		factor = ''
-	else:
-		factor=f'{factor}*x^{i} + ' if i != 1 else f'{factor}*x +'
-	print(factor, end='')
+number = int(input("Введите натуральную степень k: "))
+st = ""
+start = number
+f = open('homework4.txt', 'w')
 
-print(f'{randint(1,100)} = 0')
+while start >= 0:
+    num = randint(0, 100)
+    if start > 1:
+        st += f'{num}x^{start}'
+    elif start == 1:
+        st += f'{num}x'
+    elif start == 0:
+        st += f'{num} = 0'
+    if start > 0:
+        st += ' + '
+    start -= 1
+
+f.write(str(st))
+f.close()
+
+print(st)
